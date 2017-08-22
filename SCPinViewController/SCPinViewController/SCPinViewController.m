@@ -267,7 +267,13 @@ static SCPinAppearance *appearance;
             if ([currentPin length] == [self.createDelegate lengthForPin]) {
 //                [self.createDelegate pinViewController:self didSetNewPin:currentPin];
                 _scope = SCPinViewControllerScopeConfirm;
-                _titleLabel.text = _appearance.confirmText;
+                
+                [UIView transitionWithView:_titleLabel duration:1.0
+                                   options:UIViewAnimationOptionTransitionFlipFromTop
+                                animations:^{
+                                    _titleLabel.text = _appearance.confirmText;
+                                } completion:nil];
+                
                 _pinToConfirm = _currentPin;
                 [self clearCurrentPin];
                 [self createPinView];
